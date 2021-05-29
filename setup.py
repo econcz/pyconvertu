@@ -19,7 +19,7 @@ setup(
     author = 'econcz',
     author_email = '29724411+econcz@users.noreply.github.com',
     url = 'https://github.com/econcz/pyconvertu',
-    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_3_1.tar.gz',
+    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_3_2.tar.gz',
     keywords = [
         'pycountry-convert', 'pycountry', 'conversion', 'tune',
         'ISO-3166', 'alpha-2', 'alpha-3', 'numeric', 'English', 'French',
