@@ -73,7 +73,7 @@ pd.DataFrame(data, index=iso3)
 # Create a pandas dataframe from available classifications
 df = pd.DataFrame()
 for s in ['name_en', 'name_fr', 'iso3', 'iso2', 'isoN']:
-    df[s] = classification(to_classification=s)
+    df[s] = classification(from_classification=s)
 print(df)
 
 # Print information and metadata for the built-in JSON file and my_file.json

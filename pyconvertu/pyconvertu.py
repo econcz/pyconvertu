@@ -12,7 +12,7 @@ modules and is a port of the **Stata package**
 **[pyconvertu](https://ideas.repec.org/c/boc/bocode/s458892.html)**
 *(Stata module to convert a string variable into a classification
 from the default or user-provided JSON file with the help of Python 3)*
-coded in Python 3 and ADO. The tools can, for example,
+written in Python 3 and ADO. The tools can, for example,
 be used together with **[pandas](https://pypi.org/project/pandas/)**
 to process **pandas.DataFrame()**, `data`, `index`, and / or `columns`.
 
@@ -62,8 +62,8 @@ module:
     },
     {
         "sources": [
-            "[https://www.iso.org/iso-3166-country-codes.html](ISO 3166 COUNTRY CODES)",
-            "[https://en.wikipedia.org/wiki/List_of_alternative_country_names](ALTERNATIVE NAMES)"
+            "[...](ISO 3166 COUNTRY CODES)",
+            "[...](ALTERNATIVE NAMES)"
         ]
     }
 ]
@@ -77,16 +77,19 @@ Returns:
 
 import json
 import re
+import sys
 
 # User-defined Functions
 def convert(
-    source_file=pyconvertu_classification, from_list=[], to_classification='',
+    source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
+        '__init__.py', 'classification.json'
+    ),
+    from_list=[], to_classification='',
     *args, **kwargs
 ):
     """
     Converts a list of strings (from_list) to classification
-    (to_classification) based on a JSON file (source_file),
-    unmatched strings are returned unchanged.
+    (to_classification) based on a JSON file (source_file).
     """
     try:
         # load classification
@@ -115,7 +118,10 @@ def convert(
         return {}
 
 def classification(
-    source_file=pyconvertu_classification, from_classification='',
+    source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
+        '__init__.py', 'classification.json'
+    ),
+    from_classification='',
     *args, **kwargs
 ):
     """
@@ -130,15 +136,19 @@ def classification(
                     json.load(f)
             ))
         # create list
-        return list(map(
+        l = list(map(
             lambda d: d.get(from_classification),
                 classification
             ))
+        l.sort()
+        return l
     except:
         return {}
 
 def info(
-    source_file=pyconvertu_classification,
+    source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
+        '__init__.py', 'classification.json'
+    ),
     *args, **kwargs
 ):
     """
