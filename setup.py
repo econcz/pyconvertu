@@ -10,7 +10,7 @@ with open(path.join(this_directory, r'README'), encoding='utf-8') as f:
 setup(
     name = 'pyconvertu',
     packages = ['pyconvertu'],
-    version = '0.3.3',
+    version = '0.3.4',
     license = 'MIT',
     description = 'Tools for creation or conversion of lists from/to desired classification (the default is ISO 3166-1)',
     long_description=readme_text,
@@ -19,7 +19,7 @@ setup(
     author = 'econcz',
     author_email = '29724411+econcz@users.noreply.github.com',
     url = 'https://github.com/econcz/pyconvertu',
-    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_3_3.tar.gz',
+    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_3_4.tar.gz',
     keywords = [
         'pycountry-convert', 'pycountry', 'conversion', 'tune',
         'ISO-3166', 'alpha-2', 'alpha-3', 'numeric', 'English', 'French',

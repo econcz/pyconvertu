@@ -76,6 +76,7 @@ Returns:
 """
 
 import json
+import os
 import re
 import sys
 
@@ -93,7 +94,7 @@ def convert(
     """
     try:
         # load classification
-        with open(source_file) as f:
+        with open(os.path.expanduser(source_file)) as f:
             classification = list(filter(
                 lambda d: not d.get('metadata') and not d.get('sources'),
                 json.load(f)
@@ -130,7 +131,7 @@ def classification(
     """
     try:
         # load classification
-        with open(source_file) as f:
+        with open(os.path.expanduser(source_file)) as f:
             classification = list(filter(
                 lambda d: not d.get('metadata') and not d.get('sources'),
                     json.load(f)
@@ -156,7 +157,7 @@ def info(
     """
     try:
         # load classification metadata
-        with open(source_file) as f:
+        with open(os.path.expanduser(source_file)) as f:
             metadata = list(filter(
                 lambda d: d.get('metadata') or d.get('sources'),
                     json.load(f)
