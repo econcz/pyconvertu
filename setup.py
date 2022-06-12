@@ -1,10 +1,9 @@
 from distutils.core import setup
-from os import path
+from pathlib import Path
 
-# read the contents of README file
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, r'README'), encoding='utf-8') as f:
-    readme_text = f.read()
+# read the contents of your README file
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 # setup function
 setup(
@@ -13,7 +12,7 @@ setup(
     version = '0.4.0',
     license = 'MIT',
     description = 'Tools for creation or conversion of lists from/to desired classification (the default is ISO 3166-1)',
-    long_description=readme_text,
+    long_description=long_description,
     include_package_data = True,
     package_data={"": ["*.json"],},
     author = 'econcz',
