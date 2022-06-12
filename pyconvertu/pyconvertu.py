@@ -2,7 +2,7 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 Tools for creation or conversion of lists from/to desired classification
 (the default is ISO 3166-1)
-© econcz, 2021
+© econcz, 2022
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 This project was inspired
@@ -116,7 +116,7 @@ def convert(
                 from_list
             ))
     except:
-        return {}
+        raise PyConvertUError
 
 def classification(
     source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
@@ -144,7 +144,7 @@ def classification(
         l.sort()
         return l
     except:
-        return {}
+        raise PyConvertUError
 
 def info(
     source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
@@ -168,4 +168,4 @@ def info(
                 metadata
             ))
     except:
-        return {}
+        raise PyConvertUError
