@@ -2,7 +2,7 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 Tools for creation or conversion of lists from/to desired classification
 (the default is ISO 3166-1)
-© econcz, 2022
+© econcz, 2024
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 This project was inspired
@@ -80,8 +80,12 @@ import os
 import re
 import sys
 
-# User-defined Functions
+class PyConvertUError(Exception): # ------------------------------------------ #
+    """error class"""
+    pass
+
 def convert(
+    # Function arguments (parameters) ---------------------------------------- #
     source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
         '__init__.py', 'classification.json'
     ),
@@ -116,9 +120,10 @@ def convert(
                 from_list
             ))
     except:
-        raise PyConvertUError
+        raise PyConvertUError('Conversion failed because of an error')
 
 def classification(
+    # Function arguments (parameters) ---------------------------------------- #
     source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
         '__init__.py', 'classification.json'
     ),
@@ -144,9 +149,10 @@ def classification(
         l.sort()
         return l
     except:
-        raise PyConvertUError
+        raise PyConvertUError('Error in classification.json')
 
 def info(
+    # Function arguments (parameters) ---------------------------------------- #
     source_file=r'' + sys.modules['pyconvertu'].__file__.replace(
         '__init__.py', 'classification.json'
     ),
@@ -168,4 +174,4 @@ def info(
                 metadata
             ))
     except:
-        raise PyConvertUError
+        raise PyConvertUError('Information could not be displayed')

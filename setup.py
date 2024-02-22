@@ -9,20 +9,20 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name = 'pyconvertu',
     packages = ['pyconvertu'],
-    version = '0.4.0',
+    version = '0.4.1',
     license = 'MIT',
     description = 'Tools for creation or conversion of lists from/to desired classification (the default is ISO 3166-1)',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     include_package_data = True,
     package_data={"": ["*.json"],},
     author = 'econcz',
     author_email = '29724411+econcz@users.noreply.github.com',
     url = 'https://github.com/econcz/pyconvertu',
-    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_4_0.tar.gz',
+    download_url = 'https://github.com/econcz/pyconvertu/archive/pypi-0_4_1.tar.gz',
     keywords = [
-        'pycountry-convert', 'pycountry', 'conversion', 'tune',
-        'ISO-3166', 'alpha-2', 'alpha-3', 'numeric', 'English', 'French',
-        'regular expressions', "classification", "text"
+        'classification', 'ISO-3166', 'alpha-3', 'alpha-2', 'numeric',
+        'English', 'French', 'regular expressions'
     ],
     install_requires = [],
     classifiers = [
