@@ -1,0 +1,6 @@
+# include the bundled JSON in the sdist
+recursive-include convertu classification.json
+
+# include metadata files too
+include README.md
+include LICENSE

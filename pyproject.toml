@@ -1,0 +1,46 @@
+[project]
+name = "pyconvertu"
+version = "1.0.6"
+description = "From/to Classification Converter"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "The Economist", email = "29724411+econcz@users.noreply.github.com" }
+]
+keywords = [
+  "data-science",
+  "classification",
+  "converter",
+  "iso-3166-1",
+  "iso-3166-1-alpha-3",
+  "iso-3166-1-alpha-2",
+  "iso-3166-1-numeric"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Information Analysis"
+]
+dependencies = []
+
+[project.scripts]
+cconv = "convertu.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/econcz/pyconvertu"
+"Bug Tracker" = "https://github.com/econcz/pyconvertu/issues"
+
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["convertu"]
+
+[tool.setuptools.package-data]
+convertu = ["classification.json"]

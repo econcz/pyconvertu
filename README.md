@@ -1,32 +1,68 @@
-# Tools for creation and conversion from/to desired classification (the default is ISO 3166-1)
+# CONVERTU - From/to Classification Converter
 
+Tools for creating and converting between classification systems.
 
-This project was inspired by **[pycountry](https://pypi.org/project/pycountry/)** and  **[pycountry-convert](https://pypi.org/project/pycountry-convert/)** modules and is a port of the **Stata package** **[pyconvertu](https://ideas.repec.org/c/boc/bocode/s458892.html)** *(Stata module to convert a string variable into a classification from the default or user-provided JSON file with the help of Python 3)* written in Python 3 and ADO. The tools can, for example, be used together with **[pandas](https://pypi.org/project/pandas/)** to process **pandas.DataFrame()**, `data`, `index`, and / or `columns` (consult examples):
+## Installation
 
-- ``convert(source_file=None, from_list=[], to_classification='')`` converts a **tuple** or a **list** into a classification from a built-in or user-defined JSON file using **regular expressions**.  
-- ``classification(source_file=None, from_classification='')`` returns a **list** created from a classification.  
-- ``info(source_file=None)`` prints metadata and sources from the built-in or user-defined JSON file.
+```bash
+pip install pyconvertu
+```
 
+## Quick example
+python:  
+```python
+from convertu import cconv
 
-## Parameters:
-- `source_file` : *raw str* or *unicode*, optional.  
-Relative or absolute path to the user-defined JSON file.
-- `from_list` : *sequence* of *iterable*.  
-Input data.
-- `to_classification` : *str* or *unicode*.  
-'name_en' (English name), 'name_fr' (French name), 'iso3' (ISO 3166-1 alpha-3), 'iso2' (ISO 3166-1 alpha-2), or 'isoN' (ISO 3166-1 numeric).
-- `from_classification` : *str* or *unicode*.  
-'name_en' (English name), 'name_fr' (French name), 'iso3' (ISO 3166-1 alpha-3), 'iso2' (ISO 3166-1 alpha-2), or 'isoN' (ISO 3166-1 numeric).
+print(cconv(to="iso3", text=["Czech Republic", "Slovakia"]))
+```
+bash:  
+```bash
+cconv -t iso3 'Czech Republic' 'Slovakia'
+echo -e "Czech Republic\nSlovakia" | cconv -t iso3
+```
 
+## User Reference
 
-`source_file` (if defined) replaces the default classification (ISO 3166-1). The file must contain a list of dictionaries where `regex` is a compulsory key in each one. The default JSON file was prepared with the help of **[json](https://docs.python.org/3/library/json.html)** module:
+```python
+cconv(
+    data=[...], json_file='...', info=False, dump=False,
+    to="...", text="..." | ["...", "..."], *args, **kwargs
+)
+```
+
+Convert text into a target classification using a JSON mapping, or return mapping/metadata (info/dump modes).
+
+**Parameters:**  
+
+`data` : *list[dict]*, optional  
+A complete classification mapping provided directly as a list of dictionaries. If supplied without `json_file`, this data will be used in-memory for conversions without reading from disk.
+
+`json_file` : *str*, optional  
+Path to the classification JSON file. If not provided, the default bundled `classification.json` is used. When `data` is not supplied, this file is loaded and used as the source mapping. When `data` is supplied along with `json_file`, the data is written to `json_file`.
+
+`info` : *bool*, default = *False*  
+If *True*, return only metadata/sources entries. No conversion.
+
+`dump` : *bool*, default = *False*  
+If *True*, return the full mapping (filtered of metadata/sources). No conversion.
+
+`to` : *str*  
+Target field name to return from matched records (e.g., "iso3").
+
+`text` : *str* | *list[str]*  
+One string or a list of strings to convert. A single string input yields a single string output; a list yields a list.
+
+**Classification passed via `data`**
+
+The JSON must follow the same structure as the bundled classification.json.
+
 ```
 [
     {
         "regex":    "^(.*afgh.*|\\s*AFG\\s*|\\s*AF\\s*|\\s*4\\s*)$",
-        "name_en":  "Afghanistan",                  # classification A
-        "name_fr":  "Afghanistan (l')",             # classification B
-        "iso3":     "AFG",                          # ...
+        "name_en":  "Afghanistan",
+        "name_fr":  "Afghanistan (l')",
+        "iso3":     "AFG",
         "iso2":     "AF",
         "isoN":     "4"
     },
@@ -49,38 +85,6 @@ Input data.
 ]
 ```
 
+## License
 
-## Returns:
-- `l` : *list*.  
-Processed data.
-
-
-## Examples:
-```
-import pandas as pd
-from pyconvertu import convert
-from pyconvertu import classification
-from pyconvertu import info
-
-# Create a pandas dataframe with ISO 3166-1 alpha-3 as `index'
-data = [1, 2, 3, 4, 5, 6, 7]
-iso3 = convert(
-    from_list=['Canada', 'France', 'Germany', 'Italy', 'Japan', 'United Kingdom', 'United States'],
-    to_classification='iso3'
-)
-pd.DataFrame(data, index=iso3)
-
-# Create a pandas dataframe from available classifications
-df = pd.DataFrame()
-df['iso3'] = classification(from_classification='iso3')
-for s in ['iso2', 'isoN', 'name_en', 'name_fr']:
-    df[s] = convert(
-        from_list=df['iso3'],
-        to_classification=s
-    )
-print(df)
-
-# Print information and metadata for the built-in JSON file and my_file.json
-info()
-info(source_file=r'my_file.json')
-```
+MIT License — see the [LICENSE](LICENSE) file.
