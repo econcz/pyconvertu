@@ -128,6 +128,8 @@ def cconv(
     else:                                              # read from the file
         if  json_file is None:
             json_file = _default_json_path()
+        else:
+            json_file = path.expanduser(json_file)
         if  not path.isfile(json_file):
             raise ConvertUError(f"Classification file not found: {json_file}")
         try:
