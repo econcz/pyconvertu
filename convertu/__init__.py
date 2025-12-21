@@ -1,8 +1,8 @@
-__version__ = "1.0.6"
+__version__ = "1.0.8"
 
 from .convertu import cconv
 
 __all__ = [
-	"cconv",
-	"__version__"
+    "cconv",
+    "__version__"
 ]

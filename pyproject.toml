@@ -1,6 +1,6 @@
 [project]
 name = "pyconvertu"
-version = "1.0.6"
+version = "1.0.8"
 description = "From/to Classification Converter"
 readme = "README.md"
 requires-python = ">=3.10"
